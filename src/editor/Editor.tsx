@@ -57,8 +57,8 @@ const CustomEditor: React.FC = () => {
     const rawContent = JSON.stringify(
       editorState.getCurrentContent().getPlainText()
     );
-    console.log("Content saved! ", rawContent);
-    alert(`Content saved! ${rawContent}`);
+    console.log("Here is the content! ", rawContent);
+    alert(`Here is the content! ${rawContent}`);
   };
 
   return (
@@ -86,7 +86,9 @@ const CustomEditor: React.FC = () => {
           entryComponent={Mention}
         />
       </div>
-      <button onClick={saveContent} className={editorStyles.saveButton}>Get Content</button>
+      <button onClick={saveContent} className={editorStyles.saveButton}>
+        Get Content
+      </button>
     </div>
   );
 };

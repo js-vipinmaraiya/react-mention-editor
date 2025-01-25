@@ -4,6 +4,7 @@ const Mention = (props: EntryComponentProps): JSX.Element => {
   const {
     mention,
     theme,
+    selectMention, // eslint-disable-line @typescript-eslint/no-unused-vars
     searchValue, // eslint-disable-line @typescript-eslint/no-unused-vars
     isFocused, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...parentProps

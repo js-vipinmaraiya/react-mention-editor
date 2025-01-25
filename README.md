@@ -1,50 +1,110 @@
-# React + TypeScript + Vite
+# React Draft.js App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application built using TypeScript, Vite for fast development, and `pnpm` as the package manager. The app leverages **Draft.js** and its plugins for a feature-rich text editor experience.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡️ **Vite** for blazing-fast build and development
+- 🛠️ **TypeScript** for type safety
+- 📦 **pnpm** for efficient package management
+- ✍️ **Draft.js** with plugins for advanced text editing
 
-## Expanding the ESLint configuration
+## 🛠️ Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Follow the instructions below to set up and run the application locally.
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Make sure you have the following installed:
+
+- **Node.js** (v20.14.0 or later recommended)
+- **pnpm** (v9.15.1 or later)
+
+To install `pnpm`, run:
+```bash
+npm install -g pnpm
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/js-vipinmaraiya/react-mention-editor.git
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Navigate to the project directory:
+   ```bash
+   cd react-mention-editor
+   ```
+
+3. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Running the Application
+
+To start the development server:
+```bash
+pnpm dev
 ```
+
+Open your browser and visit [http://localhost:5173](http://localhost:5173) (default Vite port).
+
+### Building for Production
+
+To create a production build:
+```bash
+pnpm build
+```
+
+The production build will be output to the `dist` directory.
+
+### Preview Production Build
+
+You can preview the production build locally:
+```bash
+pnpm preview
+```
+
+## 🔧 Scripts
+
+- `pnpm dev`: Start the development server.
+- `pnpm build`: Create a production build.
+- `pnpm preview`: Preview the production build.
+- `pnpm lint`: Run linters (add configuration as needed).
+
+## 📦 Dependencies
+
+### Key Dependencies
+- **React**: UI library.
+- **React DOM**: Enables rendering React components to the DOM.
+- **TypeScript**: Type safety and tooling.
+- **Draft.js**: Rich text editor framework.
+- **@draft-js-plugins/editor**: Core plugin system for Draft.js editors.
+- **@draft-js-plugins/mention**: Provides mention functionality for Draft.js.
+
+## 🤝 Contributing
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your message"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature
+   ```
+5. Open a Pull Request.
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ using React, TypeScript, Draft.js, and Vite.
