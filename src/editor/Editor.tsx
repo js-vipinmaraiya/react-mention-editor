@@ -30,10 +30,12 @@ const CustomEditor: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions);
 
+  //   Handles mention change event
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
 
+  //  Handles search event for mention
   const onSearchChange = useCallback(({ value }: { value: string }) => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
   }, []);
@@ -50,6 +52,7 @@ const CustomEditor: React.FC = () => {
     return { plugins, MentionSuggestions };
   }, []);
 
+  //   Returns selected mentions
   const getMentions = useCallback((contentState: RawDraftContentState) => {
     const entityMap = contentState.entityMap;
     const users = [];
@@ -61,7 +64,8 @@ const CustomEditor: React.FC = () => {
     return users;
   }, []);
 
-  const saveContent = () => {
+  //   Get editor content
+  const getContent = () => {
     const rawState = convertToRaw(editorState.getCurrentContent());
     const mentions = getMentions(rawState);
     const uniqueMentions = Array.from(new Set(mentions)); // Remove duplicates
@@ -92,7 +96,7 @@ const CustomEditor: React.FC = () => {
           entryComponent={Mention}
         />
       </div>
-      <button onClick={saveContent} className={editorStyles.saveButton}>
+      <button onClick={getContent} className={editorStyles.saveButton}>
         Get Content
       </button>
     </div>
