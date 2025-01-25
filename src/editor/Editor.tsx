@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { ContentState, convertFromRaw, convertToRaw, EditorState, RawDraftContentState } from "draft-js";
+import { convertToRaw, EditorState, RawDraftContentState } from "draft-js";
 import _Editor, { PluginEditorProps } from "@draft-js-plugins/editor";
 import createMentionPlugin, {
   defaultSuggestionsFilter,
   MentionData,
 } from "@draft-js-plugins/mention";
-import "draft-js/dist/Draft.css";
 import Mention from "@/editor/mention";
 import editorStyles from "@/editor/Editor.module.scss";
 import mentionStyles from "@/editor/mention/Mention.module.scss";
+import "draft-js/dist/Draft.css";
 
 const Editor = _Editor as unknown as React.FC<
   React.PropsWithChildren<PluginEditorProps>
@@ -50,20 +50,24 @@ const CustomEditor: React.FC = () => {
     return { plugins, MentionSuggestions };
   }, []);
 
-  const getMentions = useCallback((contentState: RawDraftContentState)=>{
-    const entityMap = contentState.entityMap
-    const users = []
-    for(const key in entityMap){
-        users.push(entityMap[key].data.mention)
+  const getMentions = useCallback((contentState: RawDraftContentState) => {
+    const entityMap = contentState.entityMap;
+    const users = [];
+    for (const key in entityMap) {
+      if (entityMap[key].data?.mention) {
+        users.push(entityMap[key].data.mention);
+      }
     }
-    return users
-  }, [])
+    return users;
+  }, []);
 
   const saveContent = () => {
     const rawState = convertToRaw(editorState.getCurrentContent());
-    // logic can write here to remove duplicate users
-    console.log('Mentioned Users : ', getMentions(rawState))
-    console.log('Plain text : ', editorState.getCurrentContent().getPlainText())
+    const mentions = getMentions(rawState);
+    const uniqueMentions = Array.from(new Set(mentions)); // Remove duplicates
+    console.log("Mentioned Users : ", getMentions(rawState));
+    console.log("Unique Mentioned Users: ", uniqueMentions);
+    console.log("Plain Text: ", editorState.getCurrentContent().getPlainText());
   };
 
   return (
@@ -71,7 +75,7 @@ const CustomEditor: React.FC = () => {
       <div
         className={editorStyles.editor}
         onClick={() => {
-          ref.current!.focus();
+          ref.current?.focus();
         }}
       >
         <Editor
