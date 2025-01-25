@@ -1,0 +1,43 @@
+.container {
+  z-index: 10;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@mixin mentionText {
+  padding: 7px 10px 3px 10px;
+}
+
+.mention {
+  color: #4a85bb;
+}
+
+.mentionSuggestions {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.mentionSuggestionsEntry {
+  @include mentionText;
+  transition: background-color 0.4s cubic-bezier(0.27, 1.27, 0.48, 0.56);
+  &:active {
+    background-color: #cce7ff;
+  }
+}
+
+.mentionSuggestionsEntryFocused {
+  padding: 7px 10px 3px 10px;
+  background-color: #e6f3ff;
+}
+
+.mentionSuggestionsEntryText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

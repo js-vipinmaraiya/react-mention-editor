@@ -1,0 +1,30 @@
+.container {
+  margin: 2rem;
+}
+
+.editor {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 16px;
+  border-radius: 2px;
+  margin-bottom: 2em;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background: #fefefe;
+  border-radius: 0.5rem;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.saveButton {
+  outline: none;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px;
+}
