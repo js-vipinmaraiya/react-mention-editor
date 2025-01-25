@@ -9,13 +9,13 @@
 
 // Selected mention text
 .mention {
-  color: #4a85bb;
+  color: var(--primary-color);
 }
 
 // Mentions container
 .mentionSuggestions {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background: #fff;
+  background: var(--white-color);
   border-radius: 2px;
   cursor: pointer;
   padding-top: 8px;
@@ -31,14 +31,15 @@
   transition: background-color 0.4s cubic-bezier(0.27, 1.27, 0.48, 0.56);
   
   &:active {
-    background-color: #cce7ff;
+    background-color: var(--primary-color-100);
   }
 }
 
 // CSS when the mention is focused
 .mentionSuggestionsEntryFocused {
   padding: 7px 10px 3px 10px;
-  background-color: #e6f3ff;
+  background-color: var(--primary-color-100);
+  color: var(--white-color)
 }
 
 // Mention dropdown text
@@ -46,4 +47,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+
+  & .email{
+    font-size: 0.85rem;
+  }
 }

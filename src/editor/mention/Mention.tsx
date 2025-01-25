@@ -12,7 +12,10 @@ const Mention = (props: EntryComponentProps): JSX.Element => {
 
   return (
     <div {...parentProps}>
-       <div className={theme?.mentionSuggestionsEntryText}>{mention.name}</div>
+       <div className={theme?.mentionSuggestionsEntryText}>
+        <span>{mention.name}</span>
+        <span className={theme?.email}>{mention.email}</span>
+       </div>
     </div>
   );
 };

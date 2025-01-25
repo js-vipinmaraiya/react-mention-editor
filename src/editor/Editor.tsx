@@ -1,8 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { EditorState } from "draft-js";
+import { ContentState, convertFromRaw, convertToRaw, EditorState, RawDraftContentState } from "draft-js";
 import _Editor, { PluginEditorProps } from "@draft-js-plugins/editor";
 import createMentionPlugin, {
   defaultSuggestionsFilter,
+  MentionData,
 } from "@draft-js-plugins/mention";
 import "draft-js/dist/Draft.css";
 import Mention from "@/editor/mention";
@@ -13,15 +14,11 @@ const Editor = _Editor as unknown as React.FC<
   React.PropsWithChildren<PluginEditorProps>
 >;
 
-interface IMention {
-  name: string;
-}
-
-const mentions: Array<IMention> = [
-  { name: "React" },
-  { name: "TypeScript" },
-  { name: "Draft.js" },
-  { name: "This is long text message" },
+const mentions: Array<MentionData> = [
+  { name: "Francisco Watson", email: "fwatson@example.com" },
+  { name: "Ana Gibson", email: "agibson@example.com" },
+  { name: "Vera Bell", email: "vbell@example.com" },
+  { name: "Rosemary Flores", email: "rflores@example.com" },
 ];
 
 const CustomEditor: React.FC = () => {
@@ -53,12 +50,20 @@ const CustomEditor: React.FC = () => {
     return { plugins, MentionSuggestions };
   }, []);
 
+  const getMentions = useCallback((contentState: RawDraftContentState)=>{
+    const entityMap = contentState.entityMap
+    const users = []
+    for(const key in entityMap){
+        users.push(entityMap[key].data.mention)
+    }
+    return users
+  }, [])
+
   const saveContent = () => {
-    const rawContent = JSON.stringify(
-      editorState.getCurrentContent().getPlainText()
-    );
-    console.log("Here is the content! ", rawContent);
-    alert(`Here is the content! ${rawContent}`);
+    const rawState = convertToRaw(editorState.getCurrentContent());
+    // logic can write here to remove duplicate users
+    console.log('Mentioned Users : ', getMentions(rawState))
+    console.log('Plain text : ', editorState.getCurrentContent().getPlainText())
   };
 
   return (
@@ -80,9 +85,6 @@ const CustomEditor: React.FC = () => {
           onOpenChange={onOpenChange}
           suggestions={suggestions}
           onSearchChange={onSearchChange}
-          onAddMention={() => {
-            // get the mention object selected
-          }}
           entryComponent={Mention}
         />
       </div>
